@@ -1,23 +1,18 @@
 import './App.css';
-import { Tabs, TabList, TabPanels, Tab, TabPanel } from '@chakra-ui/react'
+import {Route, Routes} from "react-router-dom";
+
+import {Mypage} from "./component/mypage.tsx";
+import {Main} from "./component/main.tsx";
+import {Detail} from "./component/detail.tsx";
 
 function App() {
     console.log("test");
     return (
-        <Tabs variant='enclosed'>
-            <TabList>
-                <Tab>One</Tab>
-                <Tab>Two</Tab>
-            </TabList>
-            <TabPanels>
-                <TabPanel>
-                    <p>one!</p>
-                </TabPanel>
-                <TabPanel>
-                    <p>two!</p>
-                </TabPanel>
-            </TabPanels>
-        </Tabs>
+        <Routes>
+            <Route path="/" element={<Main/>}/>
+            <Route path="/mypage" element={<Mypage/>}/>
+            <Route path="/detail" element={<Detail/>}/>
+        </Routes>
     );
 }
 
