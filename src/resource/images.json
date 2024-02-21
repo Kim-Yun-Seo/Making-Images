@@ -1,0 +1,34 @@
+[
+  {
+    "id": 1234,
+    "name": "loppy",
+    "desc": "loopy pic",
+    "tags": ["loopy","japan"],
+    "madeBy": "kim",
+    "createdAt": "2024-12-12",
+    "imgUrl": "https://m.pinkponk.co.kr/web/product/big/202303/4907286fb87ff5a20465a9ef0d894dd2.jpg",
+    "prompt": "loopy, red hat, arm",
+    "negativePrompt": "bad quality",
+    "inputImage": "",
+    "controlNetModel": "",
+    "controlNetType": "",
+    "LoRA": "",
+    "checkpointModel": ""
+  },
+  {
+    "id": 5678,
+    "name": "nami",
+    "desc": "nami pic",
+    "tags": ["nami","japan"],
+    "madeBy": "nami",
+    "createdAt": "2024-12-12",
+    "imgUrl": "https://i.namu.wiki/i/YGO-rG8BkU3oADCTBGEdlem0VQc6RWzRbcQ612sSJMSEnmalz3oERpdtKDW6cifuiGvR4VVjrAq7Vitbcmq7Yg.webp",
+    "prompt": "nami, 1girl, arm",
+    "negativePrompt": "bad quality",
+    "inputImage": "",
+    "controlNetModel": "",
+    "controlNetType": "",
+    "LoRA": "",
+    "checkpointModel": ""
+  }
+]
