@@ -5,7 +5,7 @@ import {Tags} from "./tags.tsx";
 
 export const Images = (props) => {
     const navigate = useNavigate()
-    const shopPage = (id: number) => {navigate(`/detail/${id}`)}
+    // const shopPage = (id: number) => {navigate(`/detail/${id}`)}
     const tagList = props.tags.map(name => (<Tags name={name}/>))
     return (
         <>
@@ -33,7 +33,7 @@ export const Images = (props) => {
                 <CardFooter>
                     <Button variant='solid' colorScheme='blue' onClick={
                         () => {
-                            shopPage(props.id)
+                            navigate( `/detail/${props.id}`, { state: { id: props.id} } )
                         }
                     }>
                         detail
