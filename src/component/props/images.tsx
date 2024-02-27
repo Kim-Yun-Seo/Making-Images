@@ -5,12 +5,15 @@ import {Tags} from "./tags.tsx";
 
 export const Images = (props) => {
     const navigate = useNavigate()
-    // const shopPage = (id: number) => {navigate(`/detail/${id}`)}
     const tagList = props.tags.map(name => (<Tags name={name}/>))
     return (
         <>
-            <Card maxW='sm' padding="10px">
-                <CardBody>
+            <Card maxW='sm' padding="10px" style={{cursor: "pointer"}} onClick={
+                () => {
+                    navigate( `/detail/${props.id}`, { state: { id: props.id} } )
+                }
+            }>
+                <CardBody >
                     <Image
                         src={props.url}
                         alt='Green double couch with wooden legs'
@@ -29,16 +32,6 @@ export const Images = (props) => {
                         </Text>
                     </Stack>
                 </CardBody>
-                <Divider/>
-                <CardFooter>
-                    <Button variant='solid' colorScheme='blue' onClick={
-                        () => {
-                            navigate( `/detail/${props.id}`, { state: { id: props.id} } )
-                        }
-                    }>
-                        detail
-                    </Button>
-                </CardFooter>
             </Card>
         </>
 

@@ -1,0 +1,27 @@
+.body {
+    display: flex;
+    background: lightblue;
+    position: relative;
+    height: 50px;
+}
+
+.logo {
+    margin: 12px 20px 10px 20px;
+}
+
+.input {
+    width: 600px;
+    margin: 5px 300px 0px 300px;
+    border: blue solid 2px;
+}
+
+.progress {
+    width: 120px;
+    margin-top: 20px;
+}
+
+.profile {
+    position: absolute;
+    right: 0px;
+    cursor: pointer;
+}

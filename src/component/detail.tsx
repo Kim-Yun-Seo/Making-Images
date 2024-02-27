@@ -75,7 +75,10 @@ export const Detail = () => {
                         </Stack>
 
                         <Button ref={btnRef} colorScheme='teal' onClick={onOpen}>
-                            Open
+                            생성하기
+                        </Button>
+                        <Button ref={btnRef} colorScheme='teal' onClick={onOpen}>
+                            Download
                         </Button>
                     </div>
                 </div>
@@ -100,9 +103,9 @@ export const Detail = () => {
                     </DrawerBody>
                     <DrawerFooter>
                         <Button variant='outline' mr={3} onClick={onClose}>
-                            Cancel
+                            취소
                         </Button>
-                        <Button colorScheme='blue' ref={btnRef} onClick={onOpen}>Save</Button>
+                        <Button colorScheme='blue' ref={btnRef} onClick={onOpen}>생성</Button>
                     </DrawerFooter>
                 </DrawerContent>
             </Drawer>

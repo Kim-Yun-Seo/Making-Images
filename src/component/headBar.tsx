@@ -1,17 +1,30 @@
 import {Avatar, Input, Progress} from "@chakra-ui/react";
+import style from "../assets/headBar.module.css"
+import {useNavigate} from "react-router-dom";
 
 export const HeadBar = () => {
+    const navigate = useNavigate()
+    const nowUser = "12345"
     return (
-        <div style={{display: "flex", background: "lightblue", position: "relative", width: "100vw", height: "50px"}}>
-            <div style={{margin: "12px 20px 10px 20px"}}>
+        <div className={style.body} >
+            <div className={style.logo} onClick={
+                () => {
+                    navigate( `/` )
+                }
+            } >
                 LOGO
             </div>
-            <Input placeholder='put in here' style={{width: "600px", margin: "5px 300px 0px 300px", border: "blue solid 2px"}}/>
+            <Input placeholder='put in here' className={style.input}/>
             <div>
-                <Progress hasStripe value={80} style={{width: "120px", marginTop: "20px"}}/>
+                <Progress hasStripe value={80} className={style.progress}/>
             </div>
-            <div style={{position: "absolute", right: "0px"}}>
-                <Avatar name='Dan Abrahmov' src='https://bit.ly/dan-abramov' />
+            <div className={style.profile}>
+                <Avatar name='Dan Abrahmov' src='https://bit.ly/dan-abramov' onClick={
+                    () => {
+                        navigate( `/myPage/${nowUser}`, { state: { id: nowUser} } )
+                        // navigate( `/myPage/${nowUser}`)
+                    }
+                } />
             </div>
         </div>
     )
