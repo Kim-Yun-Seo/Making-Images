@@ -9,10 +9,9 @@ import {
     useDisclosure,
     Button,
     Image,
-    Divider,
     Heading,
     Text,
-    Stack, Editable, EditablePreview, EditableInput,
+    Stack
 } from '@chakra-ui/react'
 
 import {useRef, useState} from 'react'
@@ -21,6 +20,8 @@ import images from "../resource/images.json";
 import {Tags} from "../component/props/tags.tsx";
 import {DetailInfo} from "../component/props/detailInfo.tsx";
 import {EditableBox} from "../component/props/editableBox.tsx";
+import {HeadBar} from "./headBar.tsx";
+import style from "../assets/detail.module.css"
 
 export const Detail = () => {
     const location = useLocation();
@@ -32,7 +33,6 @@ export const Detail = () => {
     const saveInfo = (info: string, detail: string) => {
         console.log(info, detail)
     }
-
     console.log(idInfo.id, "---")
 
     let [nowImageObj, setNowImageObj] = useState({})
@@ -49,11 +49,12 @@ export const Detail = () => {
 
     return (
         <>
-            <div style={{display: "flex"}}>
-                <div style={{margin: "30px", textAlign: "center"}}>
-                    <div style={{marginRight: "auto", marginLeft: "auto"}}>
+            <HeadBar/>
+            <div className={style.body}>
+                <div className={style.imageBox}>
+                    <div>
                         <Image
-                            style={{width: '500px', height: '500px', objectFit: 'contain'}}
+                            className={style.image}
                             src={nowImageObj.imgUrl}
                             alt='Green double couch with wooden legs'
                             borderRadius='lg'
@@ -77,9 +78,9 @@ export const Detail = () => {
                             Open
                         </Button>
                     </div>
-
                 </div>
-                <div style={{marginLeft: "auto"}}>
+
+                <div className={style.detailBox}>
                     {Object.keys(nowImageObj).map(info => (<DetailInfo info={info} detail={nowImageObj[`${info}`]}/>))}
                 </div>
             </div>
@@ -94,9 +95,7 @@ export const Detail = () => {
                 <DrawerContent>
                     <DrawerCloseButton/>
                     <DrawerHeader>Parameters</DrawerHeader>
-
-                    <DrawerBody style={{margin: "10px"}}>
-
+                    <DrawerBody>
                         {Object.keys(nowImageObj).map(info => (<EditableBox info={info} detail={nowImageObj[`${info}`]}/>))}
                     </DrawerBody>
                     <DrawerFooter>

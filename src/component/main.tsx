@@ -1,13 +1,12 @@
 import {
-    Button, Card,
-    CardBody, CardFooter, Divider, Heading, Image,
-    Input, SimpleGrid, Stack, Tab, TabList, TabPanel, TabPanels, Tabs, Text
+    SimpleGrid
 } from '@chakra-ui/react'
 
 import {Images} from "./props/images.tsx";
 import {Tags} from "./props/tags.tsx";
 import {Category} from "./props/category.tsx";
 import images from "../resource/images.json"
+import {HeadBar} from "./headBar.tsx";
 
 export const Main = () => {
     const category:string[] = ["all", "character", "background"]
@@ -16,15 +15,12 @@ export const Main = () => {
     const categoryList = category.map((name, idx) => (<Category name={name}/>))
     return (
         <div>
-            <div>
-                LOGO
-            </div>
-            <Input placeholder='put in here'/>
-
+            <HeadBar/>
             <div style={{cursor: "pointer"}}>
+
                 {categoryList}
             </div>
-            <SimpleGrid spacing={4} templateColumns='repeat(auto-fill, minmax(300px, 1fr))'>
+            <SimpleGrid spacing={4} templateColumns='repeat(auto-fill, minmax(300px, 1fr))' style={{marginTop: "50px"}}>
                 {imageList}
             </SimpleGrid>
         </div>
