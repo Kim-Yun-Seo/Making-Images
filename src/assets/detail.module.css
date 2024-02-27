@@ -1,0 +1,20 @@
+.body {
+    display: flex;
+}
+
+.imageBox {
+    margin: 30px;
+    text-align: center;
+    position: fixed;
+    right: 35%;
+}
+
+.image {
+    width: 500px;
+    height: 500px;
+    object-fit: contain;
+}
+
+.detailBox {
+    margin-left: auto;
+}
