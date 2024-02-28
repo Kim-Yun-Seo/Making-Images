@@ -10,14 +10,14 @@
 }
 
 .input {
-    width: 600px;
-    margin: 5px 300px 0px 300px;
+    margin: 5px 500px 0px 300px;
     border: blue solid 2px;
 }
 
 .progress {
     width: 120px;
     margin-top: 20px;
+    margin-left: -200px;
 }
 
 .profile {

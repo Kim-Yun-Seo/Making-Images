@@ -3,7 +3,7 @@ import {useNavigate} from 'react-router-dom';
 import {Card, CardBody, Heading, Image, Stack, Text} from "@chakra-ui/react";
 import {Tags} from "./tags.tsx";
 
-export const Images = (props) => {
+export const Images = (props: any) => {
     const navigate = useNavigate()
     const tagList = props.tags.map(name => (<Tags name={name}/>))
     return (

@@ -1,34 +1,23 @@
 import {
-    Button,
-    Card,
-    CardBody, FormControl, FormLabel,
-    Heading,
-    Image, Input, Modal, ModalBody, ModalCloseButton, ModalContent, ModalFooter, ModalHeader, ModalOverlay, SimpleGrid,
-    Stack,
+    Accordion, AccordionButton, AccordionIcon, AccordionItem, AccordionPanel, Box,
+    Image, SimpleGrid,
     Tab,
     TabList,
     TabPanel,
     TabPanels,
-    Tabs, Text, useDisclosure
+    Tabs
 } from "@chakra-ui/react";
 import {useLocation} from "react-router-dom";
 import userInfo from "../resource/userInfo.json";
 import {HeadBar} from "./headBar.tsx";
-import {Images} from "./props/images";
 import {CreatedImageList} from "./props/createdImageList.tsx";
 import {ImageModal} from "./props/modal.tsx";
-import {useRef} from "react";
-
 
 export const Mypage = () => {
-    console.log("mypage",)
     const location = useLocation();
     const getUserId = { ...location.state };
     const nowUserId = getUserId.id
     const createImageList = userInfo[nowUserId]["createdImageList"].map((image, idx) => (<CreatedImageList name={image.name} url={image.url} desc={image.desc}/>))
-    const { isOpen, onOpen, onClose } = useDisclosure()
-    const initialRef = useRef(null)
-    const finalRef = useRef(null)
     console.log(nowUserId, typeof(nowUserId) ,"mypage", userInfo[nowUserId])
     return (
         <div>
@@ -41,45 +30,53 @@ export const Mypage = () => {
                 </TabList>
                 <TabPanels>
                     <TabPanel>
-                        <SimpleGrid spacing={4} templateColumns='repeat(auto-fill, minmax(300px, 1fr))'>
-                            {createImageList}
-                        </SimpleGrid>
-                        <Button onClick={onOpen}>Open Modal</Button>
-
-                        <Modal
-                            initialFocusRef={initialRef}
-                            finalFocusRef={finalRef}
-                            isOpen={isOpen}
-                            onClose={onClose}
-                        >
-                            <ModalOverlay />
-                            <ModalContent>
-                                <ModalHeader>Create your account</ModalHeader>
-                                <ModalCloseButton />
-                                <ModalBody pb={6}>
-                                    <FormControl>
-                                        <FormLabel>First name</FormLabel>
-                                        <Input ref={initialRef} placeholder='First name' />
-                                    </FormControl>
-
-                                    <FormControl mt={4}>
-                                        <FormLabel>Last name</FormLabel>
-                                        <Input placeholder='Last name' />
-                                    </FormControl>
-                                </ModalBody>
-
-                                <ModalFooter>
-                                    <Button colorScheme='blue' mr={3}>
-                                        Save
-                                    </Button>
-                                    <Button onClick={onClose}>Cancel</Button>
-                                </ModalFooter>
-                            </ModalContent>
-                        </Modal>
+                        <Accordion allowMultiple>
+                            <AccordionItem>
+                                <h2>
+                                    <AccordionButton>
+                                        <Box as="span" flex='1' textAlign='left'>
+                                            2024-03-08
+                                            <Image
+                                                src="https://m.pinkponk.co.kr/web/product/big/202303/4907286fb87ff5a20465a9ef0d894dd2.jpg"
+                                                alt='Green double couch with wooden legs'
+                                                borderRadius='lg'
+                                                style={{width: "80px", height: "80px"}}
+                                            />
+                                        </Box>
+                                        <AccordionIcon />
+                                    </AccordionButton>
+                                </h2>
+                                <AccordionPanel pb={4}>
+                                    <SimpleGrid spacing={4} templateColumns='repeat(auto-fill, minmax(300px, 1fr))'>
+                                        {createImageList}
+                                    </SimpleGrid>
+                                </AccordionPanel>
+                            </AccordionItem>
+                            <AccordionItem>
+                                <h2>
+                                    <AccordionButton>
+                                        <Box as="span" flex='1' textAlign='left'>
+                                            2024-02-12
+                                            <Image
+                                                src="https://i.namu.wiki/i/YGO-rG8BkU3oADCTBGEdlem0VQc6RWzRbcQ612sSJMSEnmalz3oERpdtKDW6cifuiGvR4VVjrAq7Vitbcmq7Yg.webp"
+                                                alt='Green double couch with wooden legs'
+                                                borderRadius='lg'
+                                                style={{width: "80px", height: "80px", objectFit: "cover"}}
+                                            />
+                                        </Box>
+                                        <AccordionIcon />
+                                    </AccordionButton>
+                                </h2>
+                                <AccordionPanel pb={4}>
+                                    <SimpleGrid spacing={4} templateColumns='repeat(auto-fill, minmax(300px, 1fr))'>
+                                        {createImageList}
+                                    </SimpleGrid>
+                                </AccordionPanel>
+                            </AccordionItem>
+                        </Accordion>
                     </TabPanel>
                     <TabPanel>
-                        <p>two!</p>
-                        <ImageModal/>
+                        X
                     </TabPanel>
                     <TabPanel>
                         <p>one!</p>
