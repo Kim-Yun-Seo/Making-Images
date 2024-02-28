@@ -1,6 +1,5 @@
 import './App.css';
 import {Route, Routes} from "react-router-dom";
-
 import {Mypage} from "./component/mypage.tsx";
 import {Main} from "./component/main.tsx";
 import {Detail} from "./component/detail.tsx";

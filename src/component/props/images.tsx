@@ -1,6 +1,6 @@
 import {useNavigate} from 'react-router-dom';
 
-import {Button, ButtonGroup, Card, CardBody, CardFooter, Divider, Heading, Image, Stack, Text} from "@chakra-ui/react";
+import {Card, CardBody, Heading, Image, Stack, Text} from "@chakra-ui/react";
 import {Tags} from "./tags.tsx";
 
 export const Images = (props) => {
