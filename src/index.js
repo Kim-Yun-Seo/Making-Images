@@ -6,11 +6,14 @@ import reportWebVitals from './reportWebVitals';
 
 import {BrowserRouter} from "react-router-dom";
 import { ChakraProvider } from '@chakra-ui/react'
+import {HeadBar} from "./component/headBar.tsx";
+
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
     <BrowserRouter>
         <ChakraProvider>
+            <HeadBar/>
             <App />
         </ChakraProvider>
     </BrowserRouter>

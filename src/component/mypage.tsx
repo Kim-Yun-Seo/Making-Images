@@ -9,9 +9,7 @@ import {
 } from "@chakra-ui/react";
 import {useLocation} from "react-router-dom";
 import userInfo from "../resource/userInfo.json";
-import {HeadBar} from "./headBar.tsx";
 import {CreatedImageList} from "./props/createdImageList.tsx";
-import {ImageModal} from "./props/modal.tsx";
 
 export const Mypage = () => {
     const location = useLocation();
@@ -21,7 +19,6 @@ export const Mypage = () => {
     console.log(nowUserId, typeof(nowUserId) ,"mypage", userInfo[nowUserId])
     return (
         <div>
-            <HeadBar/>
             <Tabs variant='enclosed'>
                 <TabList>
                     <Tab>내가 생성한 이미지</Tab>
