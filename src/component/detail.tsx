@@ -49,7 +49,6 @@ export const Detail = () => {
 
     return (
         <>
-            <HeadBar/>
             <div className={style.body}>
                 <div className={style.imageBox}>
                     <div>
