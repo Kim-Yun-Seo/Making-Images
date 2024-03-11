@@ -1,9 +1,5 @@
 import {
-    Accordion,
-    AccordionButton,
-    AccordionIcon,
-    AccordionItem, AccordionPanel,
-    Box, Card, CardBody, Divider, Text
+    Card, CardBody, Divider, Text
 } from "@chakra-ui/react";
 
 export const DetailInfo = (props) => {

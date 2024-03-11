@@ -20,7 +20,6 @@ import images from "../resource/images.json";
 import {Tags} from "../component/props/tags.tsx";
 import {DetailInfo} from "../component/props/detailInfo.tsx";
 import {EditableBox} from "../component/props/editableBox.tsx";
-import {HeadBar} from "./headBar.tsx";
 import style from "../assets/detail.module.css"
 
 export const Detail = () => {
@@ -30,13 +29,7 @@ export const Detail = () => {
     const {isOpen, onOpen, onClose} = useDisclosure()
     const btnRef = useRef()
 
-    const saveInfo = (info: string, detail: string) => {
-        console.log(info, detail)
-    }
-    console.log(idInfo.id, "---")
-
     let [nowImageObj, setNowImageObj] = useState({})
-    // const tagList = nowImageObj["tags"].map(name => (<Tags name={name}/>))
     console.log("-------", Object.keys(nowImageObj))
     const imageInfoKeyList = Object.keys(nowImageObj).map(info => (<DetailInfo info={info}/>))
 

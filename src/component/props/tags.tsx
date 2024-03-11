@@ -1,4 +1,4 @@
-import {HStack, SimpleGrid, Tag} from "@chakra-ui/react";
+import {Tag} from "@chakra-ui/react";
 
 export const Tags = (props) => {
     return (
