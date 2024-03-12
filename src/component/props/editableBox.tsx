@@ -10,6 +10,9 @@ import {
 
 export const EditableBox = (props) => {
     const detail = props.detail
+    // const setDetail = props.setDetail
+    // console.log("----slslslslls",setDetail)
+    let changeDetail = ""
     return (
         <>
             <Card maxW='sm' style={{margin: "10px"}}>
@@ -18,7 +21,10 @@ export const EditableBox = (props) => {
                     <Divider/>
                     <Editable defaultValue={detail}>
                         <EditablePreview />
-                        <EditableTextarea />
+                        <EditableTextarea onChange={(e) => {
+                            changeDetail = e.target.value
+                            console.log(changeDetail)
+                        }}/>
                     </Editable>
                 </CardBody>
             </Card>

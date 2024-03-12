@@ -25,20 +25,19 @@ import style from "../assets/detail.module.css"
 export const Detail = () => {
     const location = useLocation();
     const idInfo = { ...location.state };
-
     const {isOpen, onOpen, onClose} = useDisclosure()
     const btnRef = useRef()
 
     let [nowImageObj, setNowImageObj] = useState({})
-    console.log("-------", Object.keys(nowImageObj))
     const imageInfoKeyList = Object.keys(nowImageObj).map(info => (<DetailInfo info={info}/>))
-
-    console.log(idInfo.id, "---")
-    console.log( idInfo.hasOwnProperty('id') )
 
     images.forEach((image: object, idx: number) => {
         image["id"] === idInfo.id ? nowImageObj = image : console.log("no")
     })
+
+    const setDetailInfo = (info, detail) => {
+        nowImageObj[`${info}`] = detail
+    }
 
     return (
         <>
@@ -76,7 +75,7 @@ export const Detail = () => {
                 </div>
 
                 <div className={style.detailBox}>
-                    {Object.keys(nowImageObj).map(info => (<DetailInfo info={info} detail={nowImageObj[`${info}`]}/>))}
+                    {Object.keys(nowImageObj).map(info => (<DetailInfo info={info} detail={nowImageObj[`${info}`]} func={setDetailInfo(info, "detail")}/>))}
                 </div>
             </div>
             <Drawer
@@ -97,10 +96,15 @@ export const Detail = () => {
                         <Button variant='outline' mr={3} onClick={onClose}>
                             취소
                         </Button>
-                        <Button colorScheme='blue' ref={btnRef} onClick={onOpen}>생성</Button>
+                        <Button colorScheme='blue' ref={btnRef} onClick={ () => {
+                            console.log("hi", nowImageObj)
+                            }
+
+                        }>생성</Button>
                     </DrawerFooter>
                 </DrawerContent>
             </Drawer>
+
         </>
     );
 }
