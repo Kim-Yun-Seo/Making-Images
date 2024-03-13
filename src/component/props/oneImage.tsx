@@ -5,7 +5,8 @@ import {Tags} from "./tags.tsx";
 
 export const OneImage = (props: any) => {
     const navigate = useNavigate()
-    const tagList = props.tags.map(name => (<Tags name={name}/>))
+    const tagList = props.tags.map((name, index: number)  => (<Tags key={index} name={name}/>))
+    // console.log(props, "------props")
     return (
         <>
             <Card maxW='sm' padding="10px" style={{cursor: "pointer"}} onClick={
@@ -15,7 +16,7 @@ export const OneImage = (props: any) => {
             }>
                 <CardBody >
                     <Image
-                        src={props.url}
+                        src={props.imgUrl}
                         alt='Green double couch with wooden legs'
                         borderRadius='lg'
                     />
@@ -24,7 +25,7 @@ export const OneImage = (props: any) => {
                             {props.name}
                         </Heading>
                         <Text>
-                            {props.date}
+                            {props.createdAt}
                             <br/>
                             {props.desc}
                             <br/>
