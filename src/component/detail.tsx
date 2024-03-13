@@ -11,33 +11,30 @@ import {
     Image,
     Heading,
     Text,
-    Stack
+    Stack, CardBody, Divider, Editable, EditablePreview, EditableTextarea, Card
 } from '@chakra-ui/react'
 
 import {useRef, useState} from 'react'
-import { useLocation } from 'react-router-dom';
+import {useLocation, useNavigate} from 'react-router-dom';
 import images from "../resource/images.json";
 import {Tags} from "../component/props/tags.tsx";
 import {DetailInfo} from "../component/props/detailInfo.tsx";
-import {EditableBox} from "../component/props/editableBox.tsx";
 import style from "../assets/detail.module.css"
 
 export const Detail = () => {
+    const navigate = useNavigate()
     const location = useLocation();
     const idInfo = { ...location.state };
     const {isOpen, onOpen, onClose} = useDisclosure()
     const btnRef = useRef()
-
-    let [nowImageObj, setNowImageObj] = useState({})
-    const imageInfoKeyList = Object.keys(nowImageObj).map(info => (<DetailInfo info={info}/>))
+    // let [nowImageObj, setNowImageObj] = useState({})
+    let nowImageObj = {}
+    let newCreateImageObj = {...nowImageObj}
+    const imageInfoKeyList = Object.keys(nowImageObj).map((info, index) => (<DetailInfo key={index} info={info}/>))
 
     images.forEach((image: object, idx: number) => {
         image["id"] === idInfo.id ? nowImageObj = image : console.log("no")
     })
-
-    const setDetailInfo = (info, detail) => {
-        nowImageObj[`${info}`] = detail
-    }
 
     return (
         <>
@@ -60,7 +57,7 @@ export const Detail = () => {
                                 <br/>
                                 {nowImageObj.desc}
                                 <br/>
-                                {nowImageObj["tags"].map(name => (<Tags name={name}/>))}
+                                {nowImageObj["tags"].map((name: string[], index: number) => (<Tags key={index} name={name}/>))}
                                 <br/>
                             </Text>
                         </Stack>
@@ -75,7 +72,7 @@ export const Detail = () => {
                 </div>
 
                 <div className={style.detailBox}>
-                    {Object.keys(nowImageObj).map(info => (<DetailInfo info={info} detail={nowImageObj[`${info}`]} func={setDetailInfo(info, "detail")}/>))}
+                    {Object.keys(nowImageObj).map((info, index) => (<DetailInfo key={index} info={info} detail={nowImageObj[`${info}`]}/>))}
                 </div>
             </div>
             <Drawer
@@ -90,14 +87,31 @@ export const Detail = () => {
                     <DrawerCloseButton/>
                     <DrawerHeader>Parameters</DrawerHeader>
                     <DrawerBody>
-                        {Object.keys(nowImageObj).map(info => (<EditableBox info={info} detail={nowImageObj[`${info}`]}/>))}
+                        {Object.keys(nowImageObj).map((info, index) => (
+                            <Card key={index} maxW='sm' style={{margin: "10px"}}>
+                                <CardBody style={{overflow: "hidden"}}>
+                                    <Text style={{fontWeight: "bold"}}>{info}</Text>
+                                    <Divider/>
+                                    <Editable defaultValue={nowImageObj[`${info}`]}>
+                                        <EditablePreview />
+                                        <EditableTextarea onChange={(e) => {
+                                            newCreateImageObj = {...nowImageObj}
+                                            newCreateImageObj[`${info}`] = e.target.value
+                                        }}/>
+                                    </Editable>
+                                </CardBody>
+                            </Card>
+                        ))}
                     </DrawerBody>
                     <DrawerFooter>
                         <Button variant='outline' mr={3} onClick={onClose}>
                             취소
                         </Button>
                         <Button colorScheme='blue' ref={btnRef} onClick={ () => {
-                            console.log("hi", nowImageObj)
+                            console.log("newCreateImageObj---------", newCreateImageObj)
+                            console.log(images, "------images")
+                            console.log(nowImageObj, "------nowImageObj")
+                            navigate( `/`, { state: { bool: true, newImage: newCreateImageObj} } )
                             }
 
                         }>생성</Button>
