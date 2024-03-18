@@ -16,7 +16,7 @@ export const HeadBar = () => {
             </div>
             <Input placeholder='put in here' className={style.input}/>
             <div>
-                <Progress hasStripe value={80} className={style.progress}/>
+                {/*<Progress hasStripe value={80} className={style.progress}/>*/}
             </div>
             <div className={style.profile}>
                 <Avatar name='Dan Abrahmov' src='https://bit.ly/dan-abramov' onClick={

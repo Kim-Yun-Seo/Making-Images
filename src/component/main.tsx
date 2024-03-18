@@ -47,7 +47,7 @@ export const Main = () => {
                 </Button>
                 {categoryBtn}
             </Stack>
-            <StackGrid columnWidth={300}>
+            <StackGrid columnWidth={300} style={{zIndex: "0"}}>
                 {imageCard}
             </StackGrid>
         </div>

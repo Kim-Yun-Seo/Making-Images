@@ -1,8 +1,14 @@
 .body {
     display: flex;
     background: lightblue;
-    position: relative;
+    /*position: relative;*/
     height: 50px;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    left: 0;
+    right: 0;
+    z-index: 1;
 }
 
 .logo {

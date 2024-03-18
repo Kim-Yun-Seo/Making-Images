@@ -14,7 +14,9 @@ root.render(
     <BrowserRouter>
         <ChakraProvider>
             <HeadBar/>
-            <App />
+            <div style={{marginTop: "80px"}}>
+                <App />
+            </div>
         </ChakraProvider>
     </BrowserRouter>
 );
