@@ -11,7 +11,7 @@ import {
     Image,
     Heading,
     Text,
-    Stack, CardBody, Divider, Editable, EditablePreview, EditableTextarea, Card
+    Stack, CardBody, Divider, Editable, EditablePreview, EditableTextarea, Card, SimpleGrid
 } from '@chakra-ui/react'
 
 import {useRef, useState} from 'react'
@@ -48,7 +48,6 @@ export const Detail = () => {
                             borderRadius='lg'
                         />
                         <Stack mt='6' spacing='3'>
-                            {imageInfoKeyList}
                             <Heading size='md'>
                                 {nowImageObj.name}
                             </Heading>
@@ -57,22 +56,24 @@ export const Detail = () => {
                                 <br/>
                                 {nowImageObj.desc}
                                 <br/>
-                                {nowImageObj["tags"].map((name: string[], index: number) => (<Tags key={index} name={name}/>))}
+                                {nowImageObj["tags"].map((name: string[], index: number) => (<Tags key={index} name={name} style={{marginLeft: "10px"}}/>))}
                                 <br/>
                             </Text>
                         </Stack>
 
-                        <Button ref={btnRef} colorScheme='teal' onClick={onOpen}>
+                        <Button ref={btnRef} colorScheme='teal' onClick={onOpen} style={{marginLeft: "20px"}}>
                             생성하기
                         </Button>
-                        <Button ref={btnRef} colorScheme='teal' onClick={onOpen}>
+                        <Button ref={btnRef} colorScheme='teal' onClick={onOpen} style={{marginLeft: "10px"}}>
                             Download
                         </Button>
                     </div>
                 </div>
 
                 <div className={style.detailBox}>
-                    {Object.keys(nowImageObj).map((info, index) => (<DetailInfo key={index} info={info} detail={nowImageObj[`${info}`]}/>))}
+                    <SimpleGrid spacing={2} templateColumns='repeat(2, minmax(100px, 1fr))'>
+                        {Object.keys(nowImageObj).map((info, index) => (<DetailInfo key={index} info={info} detail={nowImageObj[`${info}`]}/>))}
+                    </SimpleGrid>
                 </div>
             </div>
             <Drawer
@@ -87,30 +88,30 @@ export const Detail = () => {
                     <DrawerCloseButton/>
                     <DrawerHeader>Parameters</DrawerHeader>
                     <DrawerBody>
-                        {Object.keys(nowImageObj).map((info, index) => (
-                            <Card key={index} maxW='sm' style={{margin: "10px"}}>
-                                <CardBody style={{overflow: "hidden"}}>
-                                    <Text style={{fontWeight: "bold"}}>{info}</Text>
-                                    <Divider/>
-                                    <Editable defaultValue={nowImageObj[`${info}`]}>
-                                        <EditablePreview />
-                                        <EditableTextarea onChange={(e) => {
-                                            newCreateImageObj = {...nowImageObj}
-                                            newCreateImageObj[`${info}`] = e.target.value
-                                        }}/>
-                                    </Editable>
-                                </CardBody>
-                            </Card>
-                        ))}
+                        <SimpleGrid spacing={2} templateColumns='repeat(2, minmax(100px, 1fr))'>
+                            {Object.keys(nowImageObj).filter((info: any) => info !== "imgUrl").map((info, index) => (
+                                <Card key={index} maxW='sm' style={{margin: "10px"}}>
+                                    <CardBody style={{overflow: "hidden"}}>
+                                        <Text style={{fontWeight: "bold"}}>{info}</Text>
+                                        <Divider/>
+                                        <Editable defaultValue={nowImageObj[`${info}`]}>
+                                            <EditablePreview />
+                                            <EditableTextarea onChange={(e) => {
+                                                newCreateImageObj = {...nowImageObj}
+                                                newCreateImageObj[`${info}`] = e.target.value
+                                            }}/>
+
+                                        </Editable>
+                                    </CardBody>
+                                </Card>
+                            ))}
+                        </SimpleGrid>
                     </DrawerBody>
                     <DrawerFooter>
                         <Button variant='outline' mr={3} onClick={onClose}>
                             취소
                         </Button>
                         <Button colorScheme='blue' ref={btnRef} onClick={ () => {
-                            console.log("newCreateImageObj---------", newCreateImageObj)
-                            console.log(images, "------images")
-                            console.log(nowImageObj, "------nowImageObj")
                             navigate( `/`, { state: { bool: true, newImage: newCreateImageObj} } )
                             }
 
