@@ -8,9 +8,9 @@ function App() {
     console.log("test");
     return (
         <Routes>
-            <Route path="/" element={<Main/>}/>
-            <Route path="/mypage/:id" element={<Mypage/>}/>
-            <Route path="/detail/:id" element={<Detail/>}/>
+            <Route path="/" element={<Main/>} handle={{scrollMode: "pathname" }}/>
+            <Route path="/mypage/:id" element={<Mypage/>} handle={{scrollMode: "pathname" }}/>
+            <Route path="/detail/:id" element={<Detail/>} handle={{scrollMode: "pathname" }}/>
         </Routes>
     );
 }

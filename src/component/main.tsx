@@ -5,8 +5,8 @@ import {
 import {OneImage} from "./props/oneImage.tsx";
 import images from "../resource/images.json"
 import StackGrid from "react-stack-grid";
-import {useState} from "react";
-import {useLocation} from "react-router-dom";
+import {useCallback, useState} from "react";
+import {ScrollRestoration, useLocation} from "react-router-dom";
 
 export const Main = () => {
     const imageList = []
@@ -32,6 +32,17 @@ export const Main = () => {
     let [imageCard, setImageCard] = useState(
         tempImgList.map((image: any, index: number) => (<div key={index}><OneImage name={image.name} imgUrl={image.imgUrl} id={image.id} desc={image.desc} createdAt={image.createdAt} tags={image.tags}/></div>))
     )
+    // let getKey = useCallback(
+    //     (location: Location, matches: ReturnType<typeof useMatches>) => {
+    //         let match = matches.find((m) => (m.handle as any)?.scrollMode);
+    //         if ((match?.handle as any)?.scrollMode === "pathname") {
+    //             return location.pathname;
+    //         }
+    //
+    //         return location.key;
+    //     },
+    //     []
+    // );
 
     return (
         <div>
@@ -52,6 +63,7 @@ export const Main = () => {
             <StackGrid columnWidth={300} style={{zIndex: "0"}}>
                 {imageCard}
             </StackGrid>
+            {/*<ScrollRestoration getKey={getKey} />*/}
         </div>
     )
 }

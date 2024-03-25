@@ -13,10 +13,11 @@
 
 .logo {
     margin: 12px 20px 10px 20px;
+    font-weight: bold;
 }
 
 .input {
-    margin: 5px 500px 0px 300px;
+    margin: 5px 500px 0 300px;
     border: blue solid 2px;
 }
 
