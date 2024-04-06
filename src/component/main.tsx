@@ -18,7 +18,7 @@ export const Main = () => {
             categoryL.push(image.category)
         }
     })
-
+console.log('sdfasdf',Main)
     const location = useLocation();
     const newImage = { ...location.state };
     console.log(newImage, "------newImage")
@@ -28,10 +28,34 @@ export const Main = () => {
         setImageCard(tempImgList.map((image: any, index: number) => (<div key={index}><OneImage name={image.name} imgUrl={image.imgUrl} id={image.id} desc={image.desc} createdAt={image.createdAt} tags={image.tags}/></div>)))
         setTempImgListLength(tempImgList.length)
     }}>{category}</Button>)
+    let b = 0
+    const aaa = () => {
+        const a = 2
+        b++
+        for (let i = 1; i < a; i++) {
+            console.log(i, 'gsdfsd')
+            // tempImgList = [...tempImgList, ...tempImgList]
+            setTempImgList([...tempImgList, ...tempImgList])
+        }
+    }
+
+
 
     let [imageCard, setImageCard] = useState(
-        tempImgList.map((image: any, index: number) => (<div key={index}><OneImage name={image.name} imgUrl={image.imgUrl} id={image.id} desc={image.desc} createdAt={image.createdAt} tags={image.tags}/></div>))
+        tempImgList.map((image: any, index: number) =>
+            (
+                <div key={index}>
+                    <OneImage
+                        name={image.name}
+                        imgUrl={image.imgUrl}
+                        id={image.id}
+                        desc={image.desc}
+                        createdAt={image.createdAt}
+                        tags={image.tags}/>
+                </div>)
+        )
     )
+    console.log('9999',imageCard[0].props.children.props)
     // let getKey = useCallback(
     //     (location: Location, matches: ReturnType<typeof useMatches>) => {
     //         let match = matches.find((m) => (m.handle as any)?.scrollMode);
@@ -49,6 +73,11 @@ export const Main = () => {
             <div style={{marginLeft: "30px", marginTop:"-10px", color: "gray"}}>
                 총 {tempImgListLength}개의 결과
             </div>
+            {tempImgList.length}
+            <br/>
+                {b}
+                <br/>
+            <button onClick={aaa}>dldldll </button>
             <Stack spacing={4} direction='row' align='center' style={{margin: "10px 10px 30px 100px"}}>
                 <Button colorScheme='teal' onClick={
                     () => {

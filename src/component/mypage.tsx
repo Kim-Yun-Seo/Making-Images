@@ -10,12 +10,15 @@ import {
 import {useLocation} from "react-router-dom";
 import userInfo from "../resource/userInfo.json";
 import {CreatedImageList} from "./props/createdImageList.tsx";
+import images from "../resource/images.json"
 
 export const Mypage = () => {
     const location = useLocation();
     const getUserId = { ...location.state };
     const nowUserId = getUserId.id
-    const createImageList = userInfo[nowUserId]["createdImageList"].map((image, idx) => (<CreatedImageList name={image.name} url={image.url} desc={image.desc}/>))
+
+    const createImageList = images.filter((name: any) => name["madeBy"] == nowUserId).map((image, idx) => (<CreatedImageList name={image.name} url={image.imgUrl} desc={image.desc}/>))
+    console.log(nowUserId, images.filter((name: any) => name["madeBy"] == nowUserId))
     console.log(nowUserId, typeof(nowUserId) ,"mypage", userInfo[nowUserId])
     return (
         <div>

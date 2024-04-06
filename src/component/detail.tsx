@@ -9,9 +9,8 @@ import {
     useDisclosure,
     Button,
     Image,
-    Heading,
     Text,
-    Stack, CardBody, Divider, Editable, EditablePreview, EditableTextarea, Card, SimpleGrid
+    CardBody, Divider, Editable, EditablePreview, EditableTextarea, Card, SimpleGrid
 } from '@chakra-ui/react'
 
 import {useRef, useState} from 'react'
@@ -20,6 +19,7 @@ import images from "../resource/images.json";
 import {Tags} from "../component/props/tags.tsx";
 import {DetailInfo} from "../component/props/detailInfo.tsx";
 import style from "../assets/detail.module.css"
+import {ModifyDetail} from "./modifyDetail.tsx";
 
 export const Detail = () => {
     const navigate = useNavigate()
@@ -30,11 +30,11 @@ export const Detail = () => {
     // let [nowImageObj, setNowImageObj] = useState({})
     let nowImageObj = {}
     let newCreateImageObj = {...nowImageObj}
-    const imageInfoKeyList = Object.keys(nowImageObj).map((info, index) => (<DetailInfo key={index} info={info}/>))
 
     images.forEach((image: object, idx: number) => {
         image["id"] === idInfo.id ? nowImageObj = image : console.log("no")
     })
+    let [aa, setAa] = useState("")
 
     return (
         <>
@@ -47,20 +47,6 @@ export const Detail = () => {
                             alt='Green double couch with wooden legs'
                             borderRadius='lg'
                         />
-                        <Stack mt='6' spacing='3'>
-                            <Heading size='md'>
-                                {nowImageObj.name}
-                            </Heading>
-                            <Text>
-                                {nowImageObj.createdAt}
-                                <br/>
-                                {nowImageObj.desc}
-                                <br/>
-                                {nowImageObj["tags"].map((name: string[], index: number) => (<Tags key={index} name={name} style={{marginLeft: "10px"}}/>))}
-                                <br/>
-                            </Text>
-                        </Stack>
-
                         <Button ref={btnRef} colorScheme='teal' onClick={onOpen} style={{marginLeft: "20px"}}>
                             생성하기
                         </Button>
@@ -87,24 +73,14 @@ export const Detail = () => {
                 <DrawerContent>
                     <DrawerCloseButton/>
                     <DrawerHeader>Parameters</DrawerHeader>
-                    <DrawerBody>
+                    <DrawerBody onChange={(e) => {
+                        newCreateImageObj = {...nowImageObj}
+                        console.log(e.target.value)
+                        aa = e.target.value
+                        }}>
                         <SimpleGrid spacing={2} templateColumns='repeat(2, minmax(100px, 1fr))'>
-                            {Object.keys(nowImageObj).filter((info: any) => info !== "imgUrl").map((info, index) => (
-                                <Card key={index} maxW='sm' style={{margin: "10px"}}>
-                                    <CardBody style={{overflow: "hidden"}}>
-                                        <Text style={{fontWeight: "bold"}}>{info}</Text>
-                                        <Divider/>
-                                        <Editable defaultValue={nowImageObj[`${info}`]}>
-                                            <EditablePreview />
-                                            <EditableTextarea onChange={(e) => {
-                                                newCreateImageObj = {...nowImageObj}
-                                                newCreateImageObj[`${info}`] = e.target.value
-                                            }}/>
-
-                                        </Editable>
-                                    </CardBody>
-                                </Card>
-                            ))}
+                            {Object.keys(nowImageObj).map((info, index) => (<ModifyDetail key={index} info={info} detail={nowImageObj[`${info}`]}/>))}
+                            {/*<ModifyDetail info={nowImageObj} />*/}
                         </SimpleGrid>
                     </DrawerBody>
                     <DrawerFooter>
